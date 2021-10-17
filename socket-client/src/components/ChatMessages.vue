@@ -36,9 +36,16 @@ export default {
   computed: {
     ...mapGetters(["getAllMessages", "getCurrentUser"]),
   },
+  methods: {
+    scrollToBottom() {
+      const element = document.querySelector(".chat-history");
+      element.scrollTo(0, element.scrollHeight);
+    },
+  },
   created() {
     socket.on("messages", (messages) => {
       if (!messages.length) return;
+      this.scrollToBottom();
       this.$store.commit(UPDATE_ALL_MESSAGES, messages);
     });
 
