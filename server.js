@@ -12,20 +12,28 @@ const io = new Server(server, {
 });
 
 const messages = []
-const users = []
+let users = []
 io.on('connection', socket => {
+
 	socket.on('message', (data) => {
 		messages.push(data)
 		io.sockets.emit('messages', messages)
 	})
+
 	socket.on('user-connected', userInfo => {
+		userInfo.socketId = socket.id
 		if (!userInfo.isExistingUser) users.push(userInfo)
+		if (userInfo.isExistingUser) {
+			if (!users.length) users.push(userInfo)
+			const isExistingUser = users.find(user => user.id === userInfo.id)
+			if (!isExistingUser) users.push(userInfo)
+		}
 		io.sockets.emit('user-connected', userInfo)
 		io.sockets.emit('get-all-users', users)
 	})
 
-	socket.on('user-disconnected', userId => {
-		users = users.filter(user => user.id !== id)
+	socket.on('disconnect', () => {
+		users = users.filter(user => user.socketId !== socket.id)
 		io.sockets.emit('get-all-users', users)
 	})
 
