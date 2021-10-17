@@ -8,7 +8,7 @@
       >
         <div
           :class="
-            message.by === getCurrentUser.id
+            message.by.id === getCurrentUser.id
               ? 'message my-message '
               : 'message other-message float-right'
           "

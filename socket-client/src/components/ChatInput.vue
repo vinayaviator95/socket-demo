@@ -34,7 +34,7 @@ export default {
       const message = {
         message: this.message,
         date: new Date(),
-        by: this.getCurrentUser.id,
+        by: this.getCurrentUser,
       };
       socket.emit("message", message);
       this.message = "";
