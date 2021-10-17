@@ -1,9 +1,9 @@
 <template>
   <div class="chat-history">
-    <ul class="m-b-0">
+    <ul class="m-b-0" v-if="getAllMessages && getAllMessages.length">
       <li
         class="clearfix line-left"
-        v-for="(message, idx) in messages"
+        v-for="(message, idx) in getAllMessages"
         :key="idx"
       >
         <div
@@ -20,50 +20,29 @@
         </div>
       </li>
     </ul>
+    <div v-else class="container mt-5 pt-5">
+      <center>
+        <h3>No messages to show</h3>
+      </center>
+    </div>
   </div>
 </template>
 
 <script>
+import socket from "@/socket/socket.js";
+import { UPDATE_ALL_MESSAGES } from "@/store/messages/messages.js";
+import { mapGetters } from "vuex";
 export default {
-  data: () => ({
-    messages: [
-      {
-        message: "this is test message",
-        time: new Date(),
-      },
-      {
-        message: "Hi Aiden, how are you? How is the project coming along?",
-        time: new Date(),
-      },
-      {
-        message: "this is test message",
-        time: new Date(),
-      },
-      {
-        message: "Hi Aiden, how are you? How is the project coming along?",
-        time: new Date(),
-      },
-      {
-        message: "this is test message",
-        time: new Date(),
-      },
-      {
-        message: "Hi Aiden, how are you? How is the project coming along?",
-        time: new Date(),
-      },
-      {
-        message: "Hi Aiden, how are you? How is the project coming along?",
-        time: new Date(),
-      },
-      {
-        message: "Hi Aiden, how are you? How is the project coming along?",
-        time: new Date(),
-      },
-      {
-        message: "Hi Aiden, how are you? How is the project coming along?",
-        time: new Date(),
-      },
-    ],
-  }),
+  computed: {
+    ...mapGetters(["getAllMessages"]),
+  },
+  created() {
+    socket.on("messages", (messages) => {
+      if (!messages.length) return;
+      this.$store.commit(UPDATE_ALL_MESSAGES, messages);
+    });
+
+    socket.emit("get-all-messages");
+  },
 };
 </script>
