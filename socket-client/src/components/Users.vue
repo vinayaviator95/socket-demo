@@ -12,15 +12,21 @@
         </div>
       </li>
     </ul>
-    <!-- <hr v-if="getOnlineUsers && getOnlineUsers.length" /> -->
-    <div v-if="users && users.length">
+    <hr
+      v-if="
+        getOnlineUsers && getOnlineUsers.length && getOnlineUsers.length > 1
+      "
+    />
+    <div v-if="getOnlineUsers && getOnlineUsers.length">
       <ul class="list-unstyled chat-list mt-2 mb-0">
-        <li class="clearfix" v-for="user in users" :key="user.id">
-          <img :src="user.avatar" alt="avatar" />
-          <div class="about">
-            <div class="name">{{ user.username }}</div>
-            <div class="status">
-              <i class="fa fa-circle online"> </i> Online
+        <li class="clearfix" v-for="user in getOnlineUsers" :key="user.id">
+          <div v-if="user.id !== getCurrentUser.id">
+            <img :src="user.avatar" alt="avatar" />
+            <div class="about">
+              <div class="name">{{ user.username }}</div>
+              <div class="status">
+                <i class="fa fa-circle online"> </i> Online
+              </div>
             </div>
           </div>
         </li>
@@ -30,290 +36,20 @@
 </template>
 
 <script>
-import { v4 as uuid } from "uuid";
-import faker from "faker";
 import { mapGetters } from "vuex";
 import socket from "@/socket/socket.js";
+import { UPDATE_ONLINE_USERS } from "@/store/users/users.js";
 export default {
   data: () => ({
-    users: [
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-      {
-        id: uuid(),
-        username: faker.internet.userName(),
-        avatar: faker.internet.avatar(),
-      },
-    ],
+    users: [],
   }),
   computed: {
     ...mapGetters(["getCurrentUser", "getOnlineUsers"]),
   },
-  mounted() {
-    socket.on("get-all-users", (users) => console.log("users are ", users));
+  created() {
+    socket.on("get-all-users", (users) =>
+      this.$store.commit(UPDATE_ONLINE_USERS, users)
+    );
   },
 };
 </script>
