@@ -1,5 +1,5 @@
 <template>
-  <div id="plist" class="people-list">
+  <div id="plist" class="people-list users-main">
     <div class="input-group">
       <h1 class="input-group-text">Users</h1>
     </div>
@@ -12,10 +12,10 @@
         </div>
       </li>
     </ul>
-    <hr v-if="getOnlineUsers && getOnlineUsers.length" />
-    <div v-if="getOnlineUsers && getOnlineUsers.length">
+    <!-- <hr v-if="getOnlineUsers && getOnlineUsers.length" /> -->
+    <div v-if="users && users.length">
       <ul class="list-unstyled chat-list mt-2 mb-0">
-        <li class="clearfix" v-for="user in getOnlineUsers" :key="user.id">
+        <li class="clearfix" v-for="user in users" :key="user.id">
           <img :src="user.avatar" alt="avatar" />
           <div class="about">
             <div class="name">{{ user.username }}</div>
@@ -37,6 +37,271 @@ import socket from "@/socket/socket.js";
 export default {
   data: () => ({
     users: [
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
+      {
+        id: uuid(),
+        username: faker.internet.userName(),
+        avatar: faker.internet.avatar(),
+      },
       {
         id: uuid(),
         username: faker.internet.userName(),
