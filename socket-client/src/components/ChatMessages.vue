@@ -8,7 +8,7 @@
       >
         <div
           :class="
-            idx % 2
+            message.by === getCurrentUser.id
               ? 'message my-message '
               : 'message other-message float-right'
           "
@@ -34,7 +34,7 @@ import { UPDATE_ALL_MESSAGES } from "@/store/messages/messages.js";
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["getAllMessages"]),
+    ...mapGetters(["getAllMessages", "getCurrentUser"]),
   },
   created() {
     socket.on("messages", (messages) => {
