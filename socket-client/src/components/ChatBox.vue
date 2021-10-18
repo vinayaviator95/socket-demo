@@ -45,7 +45,7 @@ export default {
   width: 10%;
 }
 .chat-main {
-  height: 100vh;
+  height: 94vh;
 }
 .input-btn button {
   width: 50px;
@@ -66,14 +66,16 @@ export default {
 body {
   background-color: #f4f7f6;
   overflow: hidden;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
+  padding: 20px;
 }
 .card {
   background: #fff;
   transition: 0.5s;
   border: 0;
-  margin-bottom: 30px;
+  /* height: 94.5%; */
+  /* margin-bottom: 30px; */
   border-radius: 0.55rem;
   position: relative;
   width: 100%;
@@ -87,7 +89,7 @@ body {
   top: 0;
   padding: 20px;
   z-index: 7;
-  height: 100vh;
+  height: 94.5%;
 }
 .chat-app .chat {
   margin-left: 280px;
@@ -254,7 +256,6 @@ body {
   font-size: 0;
   content: " ";
   clear: both;
-  height: 0;
 }
 @media only screen and (max-width: 767px) {
   .chat-app .people-list {
