@@ -15,7 +15,9 @@
         >
           {{ message.message }}
           <div class="message-data">
-            <span class="message-data-time float-right">10:10 AM</span>
+            <span class="message-data-time float-right">
+              {{ formatDate(message.date) }}
+            </span>
           </div>
         </div>
       </li>
@@ -32,6 +34,7 @@
 import socket from "@/socket/socket.js";
 import { UPDATE_ALL_MESSAGES } from "@/store/messages/messages.js";
 import { mapGetters } from "vuex";
+import moment from "moment";
 export default {
   computed: {
     ...mapGetters(["getAllMessages", "getCurrentUser"]),
@@ -40,6 +43,9 @@ export default {
     scrollToBottom() {
       const element = document.querySelector(".chat-history");
       element.scrollTo(0, element.scrollHeight);
+    },
+    formatDate(date) {
+      return moment(date).format("YYYY-MM-DD HH:mm");
     },
   },
   created() {
